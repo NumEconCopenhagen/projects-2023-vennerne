@@ -1,9 +1,8 @@
 # \[Group name\]
 
 **Group members:**
-- A
-- B
-- C
+- Frederik Bruhn Sørensen
+- Oliver Birk Houtved
 
 This repository contains  
 1. Inaugural project. 
