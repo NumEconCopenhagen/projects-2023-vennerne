@@ -1,4 +1,4 @@
-# \[Vennerne\]
+# \[Vennerne2\]
 
 **Group members:**
 - Frederik Bruhn Sørensen
