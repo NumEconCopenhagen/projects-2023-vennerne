@@ -1,7 +1,7 @@
-# \[Vennerne2\]
+# \[Vennerne\]
 
 **Group members:**
-- Frederik Bruhn Sørensen
+- Frederik Bruhn Sørensen, tsd670
 - Oliver Birk Houtved
 
 This repository contains  
