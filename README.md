@@ -1,4 +1,4 @@
-# \[Vennerne2\]
+# \[Vennerne\]
 
 **Group members:**
 - Frederik Bruhn Sørensen, tsd670
