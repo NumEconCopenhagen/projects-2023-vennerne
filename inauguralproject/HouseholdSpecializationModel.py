@@ -114,28 +114,36 @@ class HouseholdSpecializationModelClass:
     def solve(self,do_print=False):
         """ solve model continously """
         
-        u = self.calc_utility(LM,HM,LF,HF)
+        def choice(LM,HM,LF,HF):
+            return -self.calc_utility(LM,HM,LF,HF)
+        
+        cons = [{'type':'ineq', 'fun': LM+HM<24},
+                {'type':'ineq', 'fun': LF+HF<24}]
+        bounds = ((0,24),(0,24),(0,24),(0,24))
 
-        # b. call solver
-        initial_guess = [4,4]
-        sol_case3 = optimize.minimize(
-            u,initial_guess,method='Nelder-Mead',
-            args=(LM,HM,LF,HF))
+        # c. call solver
+        initial_guess = [4,4,4,4]
+        sol = optimize.minimize(choice,initial_guess,
+                                method='SLSQP',bounds=bounds,constraints=cons)
 
         # c. unpack solution
-        LM = sol_case3.x[0]
-        HM = sol_case3.x[1]
-        LF = sol_case3.x[2]
-        HF = sol_case3.x[3]
-        u = calc_utility(LM,HM,LF,HF)
-        print_solution(LM,HM,LF,HF)
+        opt.LM = sol.LM
+        opt.HM = sol.HM
+        opt.LF = sol.LF
+        opt.HF = sol.HF
 
-        pass    
 
-    def solve_wF_vec(self,discrete=False):
+    def solve_wF_vec(self):
         """ solve model for vector of female wages """
 
-        pass
+        par = self.par
+        sol = self.sol
+
+        for wF in par.wF_vec:
+            par.wF = wF
+            sol.LM_vec = self.solve_discrete().LM
+            sol.HM_vec = self.solve_discrete().HM
+
 
     def run_regression(self):
         """ run regression """
