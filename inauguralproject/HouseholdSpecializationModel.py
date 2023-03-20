@@ -113,6 +113,22 @@ class HouseholdSpecializationModelClass:
 
     def solve(self,do_print=False):
         """ solve model continously """
+        
+        u = self.calc_utility(LM,HM,LF,HF)
+
+        # b. call solver
+        initial_guess = [4,4]
+        sol_case3 = optimize.minimize(
+            u,initial_guess,method='Nelder-Mead',
+            args=(LM,HM,LF,HF))
+
+        # c. unpack solution
+        LM = sol_case3.x[0]
+        HM = sol_case3.x[1]
+        LF = sol_case3.x[2]
+        HF = sol_case3.x[3]
+        u = calc_utility(LM,HM,LF,HF)
+        print_solution(LM,HM,LF,HF)
 
         pass    
 
