@@ -113,24 +113,30 @@ class HouseholdSpecializationModelClass:
 
     def solve(self,do_print=False):
         """ solve model continously """
-        
-        def choice(LM,HM,LF,HF):
+
+        opt = SimpleNamespace()
+
+        def choice(x):
+            LM, HM, LF, HF = x
             return -self.calc_utility(LM,HM,LF,HF)
         
-        cons = [{'type':'ineq', 'fun': LM+HM<24},
-                {'type':'ineq', 'fun': LF+HF<24}]
+        cons = [{'type':'ineq', 'fun': lambda x: 24-x[0]-x[1]},
+                {'type':'ineq', 'fun': lambda x: 24-x[2]-x[3]}]
         bounds = ((0,24),(0,24),(0,24),(0,24))
 
         # c. call solver
-        initial_guess = [4,4,4,4]
+        initial_guess = [6,6,6,6]
         sol = optimize.minimize(choice,initial_guess,
-                                method='SLSQP',bounds=bounds,constraints=cons)
+                                method='Nelder-Mead',bounds=bounds,constraints=cons)
 
         # c. unpack solution
-        opt.LM = sol.LM
-        opt.HM = sol.HM
-        opt.LF = sol.LF
-        opt.HF = sol.HF
+
+        opt.LM = sol.x[0]
+        opt.HM = sol.x[1]
+        opt.LF = sol.x[2]
+        opt.HF = sol.x[3]
+
+        return opt
 
 
     def solve_wF_vec(self):
