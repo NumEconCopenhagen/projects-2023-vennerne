@@ -71,7 +71,7 @@ class HouseholdSpecializationModelClass:
         TF = LF+HF
         disutility = par.nu*(TM**epsilon_/epsilon_+TF**epsilon_/epsilon_)
         
-        return utility - disutility
+        return utility - disutility 
 
     def solve_discrete(self,do_print=False):
         """ solve model discretely """
