@@ -1,6 +1,6 @@
 # Model analysis project
 
-Our project is titled **PROJECT TITLE** and is about EXPLAIN.
+Our project is titled **House prices and residential investments** and examines how chages to fundamental determinants affect house prices and the level of housing stock inequilibrium
 
 The **results** of the project can be seen from running [modelproject.ipynb](modelproject.ipynb).
 
