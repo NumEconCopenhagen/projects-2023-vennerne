@@ -6,8 +6,8 @@ The **results** of the project can be seen from running [dataproject.ipynb](data
 
 We apply the **following datasets**:
 
-1. SMIT4.xlsx Danmarks statistik
-1. BEV107.xlsx Danmarks statistik
+1. SMIT4.csv Danmarks statistik
+1. BEV107.csv Danmarks statistik
 
 **Dependencies:** Apart from a standard Anaconda Python 3 installation, the project requires the following installations:
 
